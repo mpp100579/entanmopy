@@ -24,7 +24,7 @@ def getTransaction(nodeServer, trid, timeout=4000):
     return http.get(nodeServer+_kPaths['getTransaction'], {'id': trid}, timeout=timeout)
 
 
-def getTransactions(nodeServer, offset=0, limit=0, aType=None, senderId=None, senderPublicKey=None, recipientId=None, ownerPublicKey=None, ownerAddress=None, orderBy=None, amount=None, fee=None, currency=None, aAnd=None, timeout=4000):
+def getTransactions(nodeServer, offset=0, limit=100, aType=None, senderId=None, senderPublicKey=None, recipientId=None, ownerPublicKey=None, ownerAddress=None, orderBy=None, amount=None, fee=None, currency=None, aAnd=None, timeout=4000):
     # TODO: check arguments
     reqArgs = {'offset': offset, 'limit': limit}
     if aType != None:
