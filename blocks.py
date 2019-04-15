@@ -35,7 +35,7 @@ def getBlock(nodeServer, blockid=None, height=None, timeout=4000):
         reqArgs['id'] = blockid
     if height != None:
         reqArgs['height'] = height
-    assert(len(reqArgs) > 0, "Invalid arguments")
+    assert len(reqArgs) > 0, "Invalid arguments"
     return http.get(nodeServer+_kPaths['getBlock'], reqArgs, timeout=timeout)
 
 
@@ -46,7 +46,7 @@ def getFullBlock(nodeServer, blockid=None, height=None, timeout=4000):
         reqArgs['id'] = blockid
     if height != None:
         reqArgs['height'] = height
-    assert(len(reqArgs) > 0, "Invalid arguments")
+    assert len(reqArgs) > 0, "Invalid arguments"
     return http.get(nodeServer+_kPaths['getFullBlock'], reqArgs, timeout=timeout)
 
 

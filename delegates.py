@@ -40,7 +40,7 @@ def getDelegate(nodeServer, publicKey=None, username=None, timeout=4000):
         reqArgs['publicKey'] = publicKey
     if username != None:
         reqArgs['username'] = username
-    assert(len(reqArgs) > 0, 'Invalid arguments')
+    assert len(reqArgs) > 0, 'Invalid arguments'
     return http.get(nodeServer+_kPaths['getDelegate'], reqArgs, timeout=timeout)
 
 

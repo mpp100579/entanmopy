@@ -64,7 +64,7 @@ def getUnconfirmedTransactions(nodeServer, senderPublicKey=None, address=None, t
         reqArgs['senderPublicKey'] = senderPublicKey
     if address != None:
         reqArgs['address'] = address
-    assert(len(reqArgs) > 0, 'Invalid arguments')
+    assert len(reqArgs) > 0, 'Invalid arguments'
     return http.get(nodeServer+_kPaths['getUnconfirmedTransactions'], reqArgs, timeout=timeout)
 
 

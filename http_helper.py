@@ -10,7 +10,6 @@ A http cilent for get, post, put methods
 
 # _headers = {'Content-Type': 'application/json'}
 _headers = {}
-_jsonDecoder = json.JSONDecoder()
 
 
 def get(url, params=None, timeout=4000):
@@ -26,7 +25,7 @@ def get(url, params=None, timeout=4000):
                              timeout=timeout/1000, params=params)
 
         if r.status_code == 200 or r.status_code == 500:
-            data = _jsonDecoder.decode(r.content)
+            data = json.loads(r.content)
             if data['success'] == True:
                 del data['success']
                 return {'done': True, 'data': data}
@@ -36,7 +35,7 @@ def get(url, params=None, timeout=4000):
             return {'done': False, 'error': r.reason}
 
     except Exception as e:
-        return {'done': False, 'error': e.message}
+        return {'done': False, 'error': '{0}'.format(e)}
 
 
 def put(url, body=None, timeout=4000):
@@ -52,7 +51,7 @@ def put(url, body=None, timeout=4000):
                              timeout=timeout/1000, data=body)
 
         if r.status_code == 200 or r.status_code == 500:
-            data = _jsonDecoder.decode(r.content)
+            data = json.loads(r.content)
             if data['success'] == True:
                 del data['success']
                 return {'done': True, 'data': data}
@@ -62,7 +61,7 @@ def put(url, body=None, timeout=4000):
             return {'done': False, 'error': r.reason}
 
     except Exception as e:
-        return {'done': False, 'error': e.message}
+        return {'done': False, 'error': '{0}'.format(e)}
 
 
 def post(url, body=None, timeout=4000):
@@ -77,7 +76,7 @@ def post(url, body=None, timeout=4000):
             r = requests.post(url, headers=_headers,
                               timeout=timeout/1000, data=body)
         if r.status_code == 200 or r.status_code == 500:
-            data = _jsonDecoder.decode(r.content)
+            data = json.loads(r.content)
             if data['success'] == True:
                 del data['success']
                 return {'done': True, 'data': data}
@@ -87,4 +86,4 @@ def post(url, body=None, timeout=4000):
             return {'done': False, 'error': r.reason}
 
     except Exception as e:
-        return {'done': False, 'error': e.message}
+        return {'done': False, 'error': '{0}'.format(e)}

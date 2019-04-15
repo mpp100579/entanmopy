@@ -82,7 +82,7 @@ def addDelegates(nodeServer, secret, add=None, remove=None, publicKey=None, seco
     if remove != None:
         delegates.append('-'+remove)
 
-    assert(len(delegates) > 0, "delegates is empty.")
+    assert len(delegates) > 0, "delegates is empty."
     reqArgs['secret'] = secret
     reqArgs['delegates'] = delegates
     if publicKey != None:
