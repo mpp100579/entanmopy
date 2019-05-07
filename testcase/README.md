@@ -1,2 +1,2 @@
 # entanmopy
-entanmo api for python
+entanmo api test for python
