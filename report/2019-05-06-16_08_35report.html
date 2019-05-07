@@ -1,0 +1,3616 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>ETM Api Test Report</title>
+    <meta name="generator" content="BSTestRunner 0.8.4"/>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    
+<style type="text/css" media="screen">
+
+/* -- css div popup ------------------------------------------------------------------------ */
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #99CCFF;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 10pt;
+    width: 500px;
+}
+
+/* -- report ------------------------------------------------------------------------ */
+
+#show_detail_line .label {
+    font-size: 85%;
+    cursor: pointer;
+}
+
+#show_detail_line {
+    margin: 2em auto 1em auto;
+}
+
+#total_row  { font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+</style>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class="container">
+    <div class='heading'>
+<h1>ETM Api Test Report</h1>
+<p><strong>Start Time:</strong> 2019-05-06 16:08:35</p>
+<p><strong>Duration:</strong> 0:00:34.008704</p>
+<p><strong>Status:</strong> <span class="text text-warning">Error <strong>31</strong></span></p>
+
+<p class='description'>All the Etanmo api test</p>
+</div>
+
+
+    
+<p id='show_detail_line'>
+<span class="label label-primary" onclick="showCase(0)">Summary</span>
+<span class="label label-danger" onclick="showCase(1)">Failed</span>
+<span class="label label-default" onclick="showCase(2)">All</span>
+</p>
+<table id='result_table' class="table">
+    <thead>
+        <tr id='header_row'>
+            <th>Test Group/Test case</td>
+            <th>Count</td>
+            <th>Pass</td>
+            <th>Fail</td>
+            <th>Error</td>
+            <th>View</td>
+        </tr>
+    </thead>
+    <tbody>
+        
+<tr class='text text-warning'>
+    <td>test_Entanmo.ETest</td>
+    <td>31</td>
+    <td>0</td>
+    <td>0</td>
+    <td>31</td>
+    <td><a class="btn btn-xs btn-primary"href="javascript:showClassDetail('c1',31)">Detail</a></td>
+</tr>
+
+<tr id='ft1.1' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_Account</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        error</a>
+
+    <div id='div_ft1.1' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.1: teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD40876D8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/accounts/new?ent=128 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40876D8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/accounts/new?ent=128 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40876D8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 50, in test_Account
+    resp = accounts.new(self.nodeServer, ent=128)
+  File "E:\git\entanmo\Entanmo_test\testcase\accounts.py", line 101, in new
+    return http.get(nodeServer+_kPaths['newAccount'], {'ent': ent}, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.2' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_accountOnBlockchain</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
+        error</a>
+
+    <div id='div_ft1.2' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.2: teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B39B0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/accounts/effectivity?address=AKEfwcTExJ4NZZ9C5o3P7q5mQcrvuL9vAi (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B39B0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/accounts/effectivity?address=AKEfwcTExJ4NZZ9C5o3P7q5mQcrvuL9vAi (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B39B0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 87, in test_accountOnBlockchain
+    accounts.accountOnChain(self.nodeServer, self.genesisAddress)
+  File "E:\git\entanmo\Entanmo_test\testcase\accounts.py", line 106, in accountOnChain
+    return http.get(nodeServer+_kPaths['accountOnChain'], {'address': address}, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.3' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_addDelayTransactions</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.3')" >
+        error</a>
+
+    <div id='div_ft1.3' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.3: teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116198&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/transactions/delay (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116198&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 53, in put
+    timeout=timeout/1000, json=body)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 131, in put
+    return request('put', url, data=data, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/transactions/delay (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116198&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 231, in test_addDelayTransactions
+    transactions.addDelay(self.nodeServer, self.secret, self.recipientId, 10000, '1800')
+  File "E:\git\entanmo\Entanmo_test\testcase\transactions.py", line 96, in addDelay
+    return http.put(nodeServer+_kPaths['addDelay'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 67, in put
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.4' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_addDelegate</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.4')" >
+        error</a>
+
+    <div id='div_ft1.4' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.4: teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116908&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116908&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 53, in put
+    timeout=timeout/1000, json=body)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 131, in put
+    return request('put', url, data=data, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116908&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 181, in test_addDelegate
+    delegates.addDelegate(self.nodeServer, secret=self.genesisSecret, username='mpp3', publicKey=self.genesisPublicKey,secondSecret=self.secondSecret)
+  File "E:\git\entanmo\Entanmo_test\testcase\delegates.py", line 76, in addDelegate
+    return http.put(nodeServer+_kPaths['addDelegate'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 67, in put
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.5' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_addDelegates</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.5')" >
+        error</a>
+
+    <div id='div_ft1.5' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.5: teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B34A8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/accounts/delegates (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B34A8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 53, in put
+    timeout=timeout/1000, json=body)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 131, in put
+    return request('put', url, data=data, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/accounts/delegates (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B34A8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 70, in test_addDelegates
+    remove='a08dc0d7b170a0e12caff0a7faaef952741e65f3585905a5847e4d877d650f07', secondSecret='123456')
+  File "E:\git\entanmo\Entanmo_test\testcase\accounts.py", line 91, in addDelegates
+    return http.put(nodeServer+_kPaths['addDelegates'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 67, in put
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.6' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_addLockvote</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.6')" >
+        error</a>
+
+    <div id='div_ft1.6' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.6: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD407B6A0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/lockvote (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD407B6A0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 53, in put
+    timeout=timeout/1000, json=body)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 131, in put
+    return request('put', url, data=data, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/lockvote (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD407B6A0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 200, in test_addLockvote
+    lockvote.add(self.nodeServer, secret=self.genesisSecret, amount='1000',secondSecret=self.secondSecret)
+  File "E:\git\entanmo\Entanmo_test\testcase\lockvote.py", line 42, in add
+    return http.put(nodeServer+_kPaths['add'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 67, in put
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.7' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_addTransactions</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.7')" >
+        error</a>
+
+    <div id='div_ft1.7' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.7: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116A90&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/transactions (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116A90&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 53, in put
+    timeout=timeout/1000, json=body)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 131, in put
+    return request('put', url, data=data, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/transactions (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116A90&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 226, in test_addTransactions
+    transactions.add(self.nodeServer, self.secret, self.recipientId, a)
+  File "E:\git\entanmo\Entanmo_test\testcase\transactions.py", line 80, in add
+    return http.put(nodeServer+_kPaths['add'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 67, in put
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.8' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_blocks</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.8')" >
+        error</a>
+
+    <div id='div_ft1.8' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.8: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B1D0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/getFee (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B1D0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 23, in get
+    r = requests.get(url, headers=_headers, timeout=timeout/1000)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/getFee (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B1D0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 95, in test_blocks
+    print('getFee', blocks.getFee(self.nodeServer))
+  File "E:\git\entanmo\Entanmo_test\testcase\blocks.py", line 82, in getFee
+    return http.get(nodeServer+_kPaths['getFee'], timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.9' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_count</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.9')" >
+        error</a>
+
+    <div id='div_ft1.9' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.9: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B978&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/count (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B978&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 23, in get
+    r = requests.get(url, headers=_headers, timeout=timeout/1000)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/count (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B978&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 152, in test_count
+    delegates.count(self.nodeServer)
+  File "E:\git\entanmo\Entanmo_test\testcase\delegates.py", line 28, in count
+    return http.get(nodeServer+_kPaths['count'], timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.10' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_delDelegate</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.10')" >
+        error</a>
+
+    <div id='div_ft1.10' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.10: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD407B588&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/undelegate (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD407B588&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 53, in put
+    timeout=timeout/1000, json=body)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 131, in put
+    return request('put', url, data=data, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/undelegate (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD407B588&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 186, in test_delDelegate
+    delegates.delDelegate(self.nodeServer, secret=self.genesisSecret)
+  File "E:\git\entanmo\Entanmo_test\testcase\delegates.py", line 86, in delDelegate
+    return http.put(nodeServer+_kPaths['delDelegate'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 67, in put
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.11' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_delegateFee</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.11')" >
+        error</a>
+
+    <div id='div_ft1.11' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.11: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3518&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/fee (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3518&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 23, in get
+    r = requests.get(url, headers=_headers, timeout=timeout/1000)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/fee (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3518&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 166, in test_delegateFee
+    delegates.getFee(self.nodeServer)
+  File "E:\git\entanmo\Entanmo_test\testcase\delegates.py", line 61, in getFee
+    return http.get(nodeServer+_kPaths['getFee'], timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.12' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_delegates</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.12')" >
+        error</a>
+
+    <div id='div_ft1.12' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.12: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3F28&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/count (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3F28&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 23, in get
+    r = requests.get(url, headers=_headers, timeout=timeout/1000)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/count (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3F28&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 139, in test_delegates
+    print('count', delegates.count(self.nodeServer))
+  File "E:\git\entanmo\Entanmo_test\testcase\delegates.py", line 28, in count
+    return http.get(nodeServer+_kPaths['count'], timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.13' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getAccount</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.13')" >
+        error</a>
+
+    <div id='div_ft1.13' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.13: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116C18&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/accounts?address=AKEfwcTExJ4NZZ9C5o3P7q5mQcrvuL9vAi (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116C18&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/accounts?address=AKEfwcTExJ4NZZ9C5o3P7q5mQcrvuL9vAi (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116C18&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 81, in test_getAccount
+    resp = accounts.getAccount(self.nodeServer, self.genesisAddress)
+  File "E:\git\entanmo\Entanmo_test\testcase\accounts.py", line 96, in getAccount
+    return http.get(nodeServer+_kPaths['getAccount'], {'address': address}, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.14' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getAllLockVotes</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.14')" >
+        error</a>
+
+    <div id='div_ft1.14' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.14: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116710&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/lockvote/all?address=AKEfwcTExJ4NZZ9C5o3P7q5mQcrvuL9vAi&amp;offset=0&amp;limit=100 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116710&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/lockvote/all?address=AKEfwcTExJ4NZZ9C5o3P7q5mQcrvuL9vAi&amp;offset=0&amp;limit=100 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116710&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 196, in test_getAllLockVotes
+    lockvote.getAllLockVotes(self.nodeServer, self.genesisAddress)
+  File "E:\git\entanmo\Entanmo_test\testcase\lockvote.py", line 32, in getAllLockVotes
+    return http.get(nodeServer+_kPaths['getAllLockVotes'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.15' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getBalance</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.15')" >
+        error</a>
+
+    <div id='div_ft1.15' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.15: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B780&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/accounts/getBalance?address=AKEfwcTExJ4NZZ9C5o3P7q5mQcrvuL9vAi (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B780&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/accounts/getBalance?address=AKEfwcTExJ4NZZ9C5o3P7q5mQcrvuL9vAi (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B780&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 76, in test_getBalance
+    accounts.getBalance(self.nodeServer, self.genesisAddress)
+  File "E:\git\entanmo\Entanmo_test\testcase\accounts.py", line 52, in getBalance
+    return http.get(nodeServer+_kPaths['getBalance'], {'address': address}, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.16' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getBlock</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.16')" >
+        error</a>
+
+    <div id='div_ft1.16' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.16: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD4136128&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/get?id=b8f0e9310ede1fc64fbbcdc7dee0edebdd74490017e5b4261573c14c80de591a (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4136128&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/get?id=b8f0e9310ede1fc64fbbcdc7dee0edebdd74490017e5b4261573c14c80de591a (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4136128&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 125, in test_getBlock
+    blocks.getBlock(self.nodeServer, blockid='b8f0e9310ede1fc64fbbcdc7dee0edebdd74490017e5b4261573c14c80de591a')
+  File "E:\git\entanmo\Entanmo_test\testcase\blocks.py", line 39, in getBlock
+    return http.get(nodeServer+_kPaths['getBlock'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.17' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getDelegate</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.17')" >
+        error</a>
+
+    <div id='div_ft1.17' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.17: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B36D8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/get?publicKey=220ca36be9d82e9b88abf25d2bdf8de9fd858f381a3cbd5a01d20a1637f28835 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B36D8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/get?publicKey=220ca36be9d82e9b88abf25d2bdf8de9fd858f381a3cbd5a01d20a1637f28835 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B36D8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 157, in test_getDelegate
+    delegates.getDelegate(self.nodeServer, publicKey=self.genesisPublicKey)
+  File "E:\git\entanmo\Entanmo_test\testcase\delegates.py", line 44, in getDelegate
+    return http.get(nodeServer+_kPaths['getDelegate'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.18' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getDelegates</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.18')" >
+        error</a>
+
+    <div id='div_ft1.18' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.18: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116518&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates?offset=0&amp;limit=2&amp;address=AKEfwcTExJ4NZZ9C5o3P7q5mQcrvuL9vAi (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116518&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates?offset=0&amp;limit=2&amp;address=AKEfwcTExJ4NZZ9C5o3P7q5mQcrvuL9vAi (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116518&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 170, in test_getDelegates
+    delegates.getDelegates(self.nodeServer, address=self.genesisAddress, limit=2)
+  File "E:\git\entanmo\Entanmo_test\testcase\delegates.py", line 56, in getDelegates
+    return http.get(nodeServer+_kPaths['getDelegates'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.19' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getFee</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.19')" >
+        error</a>
+
+    <div id='div_ft1.19' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.19').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.19: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116240&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/getFee (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116240&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 23, in get
+    r = requests.get(url, headers=_headers, timeout=timeout/1000)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/getFee (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116240&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 92, in test_getFee
+    blocks.getFee(self.nodeServer, timeout=4000)
+  File "E:\git\entanmo\Entanmo_test\testcase\blocks.py", line 82, in getFee
+    return http.get(nodeServer+_kPaths['getFee'], timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.20' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getForgedByAccount</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.20')" >
+        error</a>
+
+    <div id='div_ft1.20' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.20: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B278&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/forging/getForgedByAccount?generatorPublicKey=220ca36be9d82e9b88abf25d2bdf8de9fd858f381a3cbd5a01d20a1637f28835 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B278&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/forging/getForgedByAccount?generatorPublicKey=220ca36be9d82e9b88abf25d2bdf8de9fd858f381a3cbd5a01d20a1637f28835 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B278&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 177, in test_getForgedByAccount
+    delegates.getForgedByAccount(self.nodeServer, generatorPublicKey=self.genesisPublicKey)
+  File "E:\git\entanmo\Entanmo_test\testcase\delegates.py", line 66, in getForgedByAccount
+    return http.get(nodeServer+_kPaths['getForgedByAccount'], {'generatorPublicKey': generatorPublicKey}, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.21' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getFullBlock</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.21')" >
+        error</a>
+
+    <div id='div_ft1.21' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.21').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.21: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD412BD30&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/full?height=200 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412BD30&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/full?height=200 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412BD30&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 135, in test_getFullBlock
+    blocks.getFullBlock(self.nodeServer,height=200)
+  File "E:\git\entanmo\Entanmo_test\testcase\blocks.py", line 50, in getFullBlock
+    return http.get(nodeServer+_kPaths['getFullBlock'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.22' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getHeight</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.22')" >
+        error</a>
+
+    <div id='div_ft1.22' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.22').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.22: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD4136240&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/getHeight (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4136240&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 23, in get
+    r = requests.get(url, headers=_headers, timeout=timeout/1000)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/getHeight (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4136240&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 115, in test_getHeight
+    blocks.getHeight(self.nodeServer)
+  File "E:\git\entanmo\Entanmo_test\testcase\blocks.py", line 77, in getHeight
+    return http.get(nodeServer+_kPaths['getHeight'], timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.23' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getLockVote</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.23')" >
+        error</a>
+
+    <div id='div_ft1.23' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.23').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.23: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD407B668&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/lockvote/get?id=289c0738ee485ba6f289f015fd2ae7b632e8c1167c40e5a55d663c32ad05b67d (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD407B668&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/lockvote/get?id=289c0738ee485ba6f289f015fd2ae7b632e8c1167c40e5a55d663c32ad05b67d (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD407B668&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 192, in test_getLockVote
+    lockvote.getLockVote(self.nodeServer, self.genesisTrId)
+  File "E:\git\entanmo\Entanmo_test\testcase\lockvote.py", line 20, in getLockVote
+    return http.get(nodeServer+_kPaths['getLockVote'], {'id': trid}, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.24' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getReward</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.24')" >
+        error</a>
+
+    <div id='div_ft1.24' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.24').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.24: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B588&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/getReward (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B588&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 23, in get
+    r = requests.get(url, headers=_headers, timeout=timeout/1000)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/getReward (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B588&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 120, in test_getReward
+    blocks.getReward(self.nodeServer)
+  File "E:\git\entanmo\Entanmo_test\testcase\blocks.py", line 92, in getReward
+    return http.get(nodeServer+_kPaths['getReward'], timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.25' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getSupply</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.25')" >
+        error</a>
+
+    <div id='div_ft1.25' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.25').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.25: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B6D8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/getSupply (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B6D8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 23, in get
+    r = requests.get(url, headers=_headers, timeout=timeout/1000)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/blocks/getSupply (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD412B6D8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 130, in test_getSupply
+    blocks.getSupply(self.nodeServer, timeout=4000)
+  File "E:\git\entanmo\Entanmo_test\testcase\blocks.py", line 97, in getSupply
+    return http.get(nodeServer+_kPaths['getSupply'], timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.26' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getUnconfirmedTransactions</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.26')" >
+        error</a>
+
+    <div id='div_ft1.26' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.26').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.26: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD41163C8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/transactions/unconfirmed?senderPublicKey=&amp;address= (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD41163C8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/transactions/unconfirmed?senderPublicKey=&amp;address= (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD41163C8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 221, in test_getUnconfirmedTransactions
+    transactions.getUnconfirmedTransactions(self.nodeServer, senderPublicKey='', address='')
+  File "E:\git\entanmo\Entanmo_test\testcase\transactions.py", line 68, in getUnconfirmedTransactions
+    return http.get(nodeServer+_kPaths['getUnconfirmedTransactions'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.27' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_getVoters</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.27')" >
+        error</a>
+
+    <div id='div_ft1.27' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.27').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.27: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116320&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/voters?publicKey=220ca36be9d82e9b88abf25d2bdf8de9fd858f381a3cbd5a01d20a1637f28835 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116320&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/delegates/voters?publicKey=220ca36be9d82e9b88abf25d2bdf8de9fd858f381a3cbd5a01d20a1637f28835 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD4116320&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 162, in test_getVoters
+    delegates.getVoters(self.nodeServer, publicKey=self.genesisPublicKey)
+  File "E:\git\entanmo\Entanmo_test\testcase\delegates.py", line 33, in getVoters
+    return http.get(nodeServer+_kPaths['getVoters'], {'publicKey': publicKey}, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.28' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_newAccount</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.28')" >
+        error</a>
+
+    <div id='div_ft1.28' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.28').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.28: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3DD8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/accounts/new?ent=128 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3DD8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/accounts/new?ent=128 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3DD8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 42, in test_newAccount
+    r = accounts.new(self.nodeServer, ent=128)
+  File "E:\git\entanmo\Entanmo_test\testcase\accounts.py", line 101, in new
+    return http.get(nodeServer+_kPaths['newAccount'], {'ent': ent}, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.29' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_remove</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.29')" >
+        error</a>
+
+    <div id='div_ft1.29' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.29').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.29: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3B00&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/lockvote/remove (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3B00&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 53, in put
+    timeout=timeout/1000, json=body)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 131, in put
+    return request('put', url, data=data, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/lockvote/remove (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3B00&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 205, in test_remove
+    lockvote.remove(self.nodeServer, secret=self.genesisSecret, trids=[159],secondSecret=self.secondSecret)
+  File "E:\git\entanmo\Entanmo_test\testcase\lockvote.py", line 57, in remove
+    return http.put(nodeServer+_kPaths['remove'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 67, in put
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.30' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_signatures</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.30')" >
+        error</a>
+
+    <div id='div_ft1.30' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.30').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.30: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3D30&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/signatures/fee (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3D30&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 23, in get
+    r = requests.get(url, headers=_headers, timeout=timeout/1000)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/signatures/fee (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3D30&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 210, in test_signatures
+    signatures.getFee(self.nodeServer)
+  File "E:\git\entanmo\Entanmo_test\testcase\signatures.py", line 24, in getFee
+    return http.get(nodeServer+_kPaths['getFee'], timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.31' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>test_transactions</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.31')" >
+        error</a>
+
+    <div id='div_ft1.31' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.31').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.31: teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+teardown
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "E:\MPP\Python\python3.6.4\install\lib\http\client.py", line 964, in send
+    self.connect()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3550&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/transactions?offset=0&amp;limit=1 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3550&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 26, in get
+    timeout=timeout/1000, params=params)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\MPP\Python\python3.6.4\install\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='39.105.210.35', port=4096): Max retries exceeded with url: /api/transactions?offset=0&amp;limit=1 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001FCD40B3550&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git\entanmo\Entanmo_test\testcase\test_Entanmo.py", line 215, in test_transactions
+    transactions.getTransactions(self.nodeServer, limit=1)
+  File "E:\git\entanmo\Entanmo_test\testcase\transactions.py", line 52, in getTransactions
+    return http.get(nodeServer+_kPaths['getTransactions'], reqArgs, timeout=timeout)
+  File "E:\git\entanmo\Entanmo_test\testcase\http_helper.py", line 40, in get
+    return {'done': False, 'error': e.message}
+AttributeError: 'ConnectionError' object has no attribute 'message'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    </tbody>
+    <tfoot>
+        <tr id='total_row'>
+            <td>Total</td>
+            <td>31</td>
+            <td class="text text-success">0</td>
+            <td class="text text-danger">0</td>
+            <td class="text text-warning">31</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tfoot>
+</table>
+
+    <div id='ending'>&nbsp;</div>
+</div>
+
+</body>
+</html>
